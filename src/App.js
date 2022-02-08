@@ -6,19 +6,33 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [keyword, setKeyword] = useState("");
   const onClick = () => {setCounter((prev) => prev + 1);}
-  const onChange = (event) => {setKeyword(event.target.value);}
+  const onChange = (event) => {setKeyword(event.target.value);} 
+  // onChange로 keyword의 변화를 감지하면, value를 수정한다.
 
-  console.log("I run all the time");
-  
+  // console.log("I run all the time");  
   // useEffect(iRunOnlyOnce, []);
+
+  useEffect( () => {
+    console.log("I run only once")}, []
+  );
+
+  useEffect(() => {}, []);
+  // keyword가 변화할 때만 코드를 실행한다.
+  useEffect(()=> {
+    console.log("I run when 'keyword' changes.");
+    console.log('keyword: ', keyword);
+  }, [keyword]);
+
+  useEffect(()=> {
+    console.log("I run when 'counter' changes.");
+  }, [counter]);
+
   useEffect(() => {
-    if (keyword !== "" && keyword.length >5 ) {
-      console.log("SEARCH FOR ", keyword);
-    }
-  }, [keyword]); // keyword가 변화할 때만 실행된다.
+    console.log("I run when keyword & counter change")
+  }, [keyword, counter]);
 
   // 이것이 빈값일땐 1번만 실행되는 이유이다.
-  // 빈 값일 경우 react가 지켜볼게 아무것도 없으니까 1번만 실행됨.
+  // 빈 값일 경우 react가 감지할 값이 없기때문에 처음 1번만 실행된다.
   
   // <Button onClick={onClick} text="hey your button here"/>
   return (
