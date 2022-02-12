@@ -25,6 +25,8 @@ function App() {
       return; // toDo가 mepty면 이 함수를 실행시키지 않는다
     }
     setToDos((currentArray) => [toDo, ...currentArray]);
+    // 새로운 toDo를 받아와서, 새로운 array를 return 한다.
+
     setToDo(""); // 키워드 입력 후 submit하면 input창을 비워준다.
   };
     console.log(toDos);
@@ -44,6 +46,12 @@ function App() {
       ></input>
       <button>Add To Do</button>
       </form>
+      <hr/>
+      <ul>
+        {toDos.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
