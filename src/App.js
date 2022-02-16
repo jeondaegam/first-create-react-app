@@ -30,29 +30,38 @@ function App() {
   // 원하는 dollor로 BTC 몇개를 살수있는가?
   //// usd를 vtc로ㅓ 전환 input을 만들고 20달러를 적으면
 //얼만큼의 btc로 , 얼마만큼은 솔라나 폴카나 읹니
+  const [dollor, setDollor] = useState(0);
+  const onChange = (event) => setDollor(parseInt(event.target.value));
+  
+  let selectedCoin = {
+    name: "",
+    price: 0, 
+  }
+  const selectOnChange = (event) => {
+    const options = event.target.options;
+    selectedCoin.name = options[options.selectedIndex].id;
+    selectedCoin.price = parseInt(options[options.selectedIndex].value);
 
-  const [dollor, setDollor] = useState("");
-  const onChange = (event) => setDollor(event.target.value);
-  
-  const optionChange = (event) => console.log(event.target.id);
-  
-  // const [coinId, setCoinId] = usetState("");
-  // const [coinPrice, setCoinPrice] = useState("");
+    console.log(selectedCoin);
+  }
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log( "$ " , dollor);
-    setDollor("");
-    // console.log(coin.name +",")
-    // console.log(option);
+    console.log( "your input $" , dollor, ": " , selectedCoin.price);
+    console.log(selectedCoin)
+    // console.log(selectedCoin.name.price > dollor ? selectedCoin.price/dollor : dollor/selectedCoin.price);
+    // setDollor(0);
+
+    // submit을 하는 순간 submit도 change로 인식되어
+    // selectOnChange가 실행되 selectedCoin이 초기화되는것같음.
   }
   return (
     <div>
         <h1>The Coins! {loading ? "" : `(${coins.length})`}</h1>
         {loading ? <strong>Loading</strong> : 
-                <select onChane ={selectOnChange}>
+                <select onChange ={selectOnChange}> // TO-Do 이 이벤트로 체크하는게 맞나...
                 {coins.map((coin) => (
-                <option id={coin.id} className ={coin.quotes.USD.price}>
+                <option id = {coin.name} value={coin.quotes.USD.price}>
                     {coin.name} ({coin.symbol}) : {coin.quotes.USD.price} USD
                 </option>))}
             </select>
@@ -62,7 +71,7 @@ function App() {
     <input onChange={onChange} value={dollor} text="text" placeholder="Write price you want to change"/>
     <button>Conversion to BTC</button>
     </form>
-    {dollor==="" ?  "" : <h1>you can buy ${dollor} BTC</h1>}
+    {dollor==="" ?  "" : <h1>you can buy ${selectedCoin.price/dollor} ${selectedCoin.name}</h1>}
     </div>
   );
 }
