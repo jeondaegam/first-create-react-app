@@ -6,7 +6,7 @@ import Recap from './Recap';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Recap />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
