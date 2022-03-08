@@ -5,7 +5,7 @@ import {
 import PropTypes from "prop-types";
 
 function Movie({id, coverImg, title, summary, genres }) {
-    return <div>
+    return (<div>
         <img src={coverImg} alt={title} />
         <h2>
             <Link to={`/movie/${id}`}>{title}</Link>
@@ -16,7 +16,7 @@ function Movie({id, coverImg, title, summary, genres }) {
                 <li>{g}</li>
             ))}
         </ul>
-    </div>
+    </div>)
 }
 Movie.propTypes = {
     id: PropTypes.number.isRequired,
