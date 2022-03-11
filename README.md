@@ -79,3 +79,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 	ReactDOM.render(span, root);
 </script>
 ```
+
+### 2.3 Events in React
+- React JS의 강력함
+- 아래 3줄의 코드로 html element를 생성하고 event listener를 등록하고 content도 넣었다.
+```java script
+	const btn = React.createElement("button", {
+        onclick: () => console.log("Im clicked"),
+    }, "Click me");
+```
