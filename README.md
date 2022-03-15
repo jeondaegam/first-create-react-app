@@ -88,3 +88,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
         onclick: () => console.log("Im clicked"),
     }, "Click me");
 ```
+
+### 2.4 Recap
+- React JS: interactivity의 원동력
+- ReactDOM: React Element를 가져가 HTML로 바꾼다.
+
+### 2.5. CreateElement를 사용하지 않는 이유
+- JSX : A syntax extention to JavaScript
+	- HTML과 같은 정규식을 사용해 가독성이 좋고 편리하다.
+```java script
+    // const h3 = React.createElement("h3", {
+    //     onMouseEnter: () => console.log("you press Enter"),
+    // }, "Hello Im h3");
+
+    const h3 = (<h3 id="title"
+        onMouseEnter={() => console.log("you press Enter")}>Hello Im h3</h3>);
+```
