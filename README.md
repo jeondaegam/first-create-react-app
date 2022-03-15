@@ -104,3 +104,37 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     const h3 = (<h3 id="title"
         onMouseEnter={() => console.log("you press Enter")}>Hello Im h3</h3>);
 ```
+	- 정확히 말하면, Babel이 JSX 문법을 React JS 방식으로 변환해 읽는다.
+
+### 2.6 JSX로 rendering하기
+- tag(Element) 안에 여러개의 tag를 포함시키려면?
+	1. 포함시킬 Element를 function으로 만들어준다.
+	2. JSX 문법으로 element를 포함시킨다.
+
+```java script
+		// 1. arrow function  
+	    const Button = () =>  (
+        <button>Click me</button>);
+		
+		// 2. inclide element
+		const Container = (<div>
+        	<H3 />
+       		<Button />
+        </div>);
+		
+		 ReactDOM.render(Container, root);
+
+```
+
+- arrow function과 normal funtion
+- 둘은 완전히 같다.
+```java script
+	    const Button = () =>  ( // arrow
+        <button>Click me</button>);
+
+		function Button() { // normal
+			return (<button>Click me
+			</button>);
+		} 
+
+```
